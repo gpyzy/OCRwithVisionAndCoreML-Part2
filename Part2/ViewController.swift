@@ -20,9 +20,7 @@ class ViewController: UIViewController {
     //RESULT FROM RECOGNITION
     var recognizedRegion:String = String()
     
-    
-    
-    
+
     //OCR-REQUEST
     lazy var ocrRequest: VNCoreMLRequest = {
         do {
@@ -133,7 +131,7 @@ class ViewController: UIViewController {
         //PREPARE THE HANDLER
         let handler = VNImageRequestHandler(ciImage: ciImage, options:[:])
         
-        //WE NEED BOX FOR EACH DETECTED CHARACTER
+        //WE NEED A BOX FOR EACH DETECTED CHARACTER
         self.textDetectionRequest.reportCharacterBoxes = true
         self.textDetectionRequest.preferBackgroundProcessing = false
         
@@ -157,6 +155,7 @@ class ViewController: UIViewController {
         //WE NEED AN CIIMAGE - NO NEED TO SCALE
         inputImage = CIImage(image:loadedImage)!
         
+        //LET'S DO IT
         self.doOCR(ciImage: inputImage!)
         
    
