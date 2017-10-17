@@ -11,14 +11,19 @@ import CoreML
 
 class ViewController: UIViewController {
 
+    //HOLDS OUR INPUT
     var  inputImage:CIImage?
+    
+    //RESULT FROM OVERALL RECOGNITION
     var  recognizedWords:[String] = [String]()
+   
+    //RESULT FROM RECOGNITION
     var recognizedRegion:String = String()
     
-    lazy var textDetectionRequest: VNDetectTextRectanglesRequest = {
-            return VNDetectTextRectanglesRequest(completionHandler: self.handleDetection)
-    }()
     
+    
+    
+    //OCR-REQUEST
     lazy var ocrRequest: VNCoreMLRequest = {
         do {
             //THIS MODEL IS TRAINED BY ME FOR FONT "Inconsolata" (Numbers 0...9 and UpperCase Characters A..Z)
@@ -29,6 +34,7 @@ class ViewController: UIViewController {
         }
     }()
     
+    //OCR-HANDLER
     func handleClassification(request: VNRequest, error: Error?)
     {
         guard let observations = request.results as? [VNClassificationObservation]
@@ -39,6 +45,12 @@ class ViewController: UIViewController {
         self.recognizedRegion = self.recognizedRegion.appending(best.identifier)
     }
     
+    //TEXT-DETECTION-REQUEST
+    lazy var textDetectionRequest: VNDetectTextRectanglesRequest = {
+        return VNDetectTextRectanglesRequest(completionHandler: self.handleDetection)
+    }()
+    
+    //TEXT-DETECTION-HANDLER
     func handleDetection(request:VNRequest, error: Error?)
     {
         guard let observations = request.results as? [VNTextObservation]
@@ -47,6 +59,7 @@ class ViewController: UIViewController {
        // EMPTY THE RESULTS
         self.recognizedWords = [String]()
         
+        //NEEDED BECAUSE OF DIFFERENT SCALES
         let  transform = CGAffineTransform.identity.scaledBy(x: (self.inputImage?.extent.size.width)!, y:  (self.inputImage?.extent.size.height)!)
         
         //A REGION IS LIKE A "WORD"
@@ -65,6 +78,7 @@ class ViewController: UIViewController {
                 //SCALE THE BOUNDING BOX TO PIXELS
                 let realBoundingBox = box.boundingBox.applying(transform)
             
+                //TO BE SURE
                 guard (inputImage?.extent.contains(realBoundingBox))!
                     else { print("invalid detected rectangle"); return}
 
@@ -109,27 +123,21 @@ class ViewController: UIViewController {
     
     func PrintWords(words:[String])
     {
+        // VOILA'
         print(recognizedWords)
         
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        //LETS LOAD AN IMAGE FROM RESOURCE (TRY ANOTHER ONE ...)
-        let loadedImage:UIImage = UIImage(named: "Sample3.png")!
-        
-        //WE NEED AN CIIMAGE - NO NEED TO SCALE
-        inputImage = CIImage(image:loadedImage)!
-        
+    
+    func doOCR(ciImage:CIImage)
+    {
         //PREPARE THE HANDLER
-        let handler = VNImageRequestHandler(ciImage: inputImage!, options:[:])
+        let handler = VNImageRequestHandler(ciImage: ciImage, options:[:])
         
         //WE NEED BOX FOR EACH DETECTED CHARACTER
         self.textDetectionRequest.reportCharacterBoxes = true
         self.textDetectionRequest.preferBackgroundProcessing = false
         
-        //FEED IT TO THE QUEUE
+        //FEED IT TO THE QUEUE FOR TEXT-DETECTION
         DispatchQueue.global(qos: .userInteractive).async {
             do {
                 try  handler.perform([self.textDetectionRequest])
@@ -137,6 +145,20 @@ class ViewController: UIViewController {
                 print ("Error")
             }
         }
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //LETS LOAD AN IMAGE FROM RESOURCE
+        let loadedImage:UIImage = UIImage(named: "Sample1.png")! //TRY Sample2, Sample3 too
+        
+        //WE NEED AN CIIMAGE - NO NEED TO SCALE
+        inputImage = CIImage(image:loadedImage)!
+        
+        self.doOCR(ciImage: inputImage!)
+        
    
     }
 
