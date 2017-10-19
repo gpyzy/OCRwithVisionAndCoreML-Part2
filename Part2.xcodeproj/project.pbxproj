@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F59E28C1F98A6BE00763F51 /* OCR.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2F59E28B1F98A6BE00763F51 /* OCR.mlmodel */; };
 		2FC22E131F95D34000C79308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC22E121F95D34000C79308 /* AppDelegate.swift */; };
 		2FC22E151F95D34000C79308 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC22E141F95D34000C79308 /* ViewController.swift */; };
 		2FC22E181F95D34000C79308 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E161F95D34000C79308 /* Main.storyboard */; };
 		2FC22E1A1F95D34000C79308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E191F95D34000C79308 /* Assets.xcassets */; };
 		2FC22E1D1F95D34000C79308 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E1B1F95D34000C79308 /* LaunchScreen.storyboard */; };
 		2FC22E261F95D3B100C79308 /* Sample1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E241F95D39E00C79308 /* Sample1.png */; };
-		2FC22E281F95E99200C79308 /* OCR.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2FC22E271F95E98900C79308 /* OCR.mlmodel */; };
 		2FC22E2A1F95F0AF00C79308 /* Sample2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E291F95F0AD00C79308 /* Sample2.png */; };
 		2FC22E2C1F95F69900C79308 /* Sample3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FC22E2B1F95F69600C79308 /* Sample3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F59E28B1F98A6BE00763F51 /* OCR.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OCR.mlmodel; sourceTree = "<group>"; };
 		2FC22E0F1F95D34000C79308 /* Part2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Part2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FC22E121F95D34000C79308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FC22E141F95D34000C79308 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		2FC22E1C1F95D34000C79308 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2FC22E1E1F95D34000C79308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FC22E241F95D39E00C79308 /* Sample1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample1.png; sourceTree = "<group>"; };
-		2FC22E271F95E98900C79308 /* OCR.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = OCR.mlmodel; sourceTree = "<group>"; };
 		2FC22E291F95F0AD00C79308 /* Sample2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample2.png; sourceTree = "<group>"; };
 		2FC22E2B1F95F69600C79308 /* Sample3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sample3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +62,7 @@
 		2FC22E111F95D34000C79308 /* Part2 */ = {
 			isa = PBXGroup;
 			children = (
-				2FC22E271F95E98900C79308 /* OCR.mlmodel */,
+				2F59E28B1F98A6BE00763F51 /* OCR.mlmodel */,
 				2FC22E251F95D3A800C79308 /* Images */,
 				2FC22E121F95D34000C79308 /* AppDelegate.swift */,
 				2FC22E141F95D34000C79308 /* ViewController.swift */,
@@ -160,8 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FC22E151F95D34000C79308 /* ViewController.swift in Sources */,
-				2FC22E281F95E99200C79308 /* OCR.mlmodel in Sources */,
 				2FC22E131F95D34000C79308 /* AppDelegate.swift in Sources */,
+				2F59E28C1F98A6BE00763F51 /* OCR.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
